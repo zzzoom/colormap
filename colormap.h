@@ -33,8 +33,8 @@
 #include <math.h>
 #include <stdint.h>
 
-static const int COLORMAP__SIZE = 256;
-static const int COLORMAP__MAX = COLORMAP__SIZE - 1;
+#define COLORMAP__SIZE 256
+#define COLORMAP__MAX ((COLORMAP__SIZE) - 1)
 
 typedef float colormap__data[COLORMAP__SIZE][3];
 

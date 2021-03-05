@@ -1,4 +1,5 @@
 CFLAGS+= -I..
+LDFLAGS=-lm
 
 TARGETS=ramps
 

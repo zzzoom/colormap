@@ -32,6 +32,9 @@ int main() {
     paint_ramp(COLORMAP_INFERNO, ramp);
     stbi_write_png("inferno.png", WIDTH, HEIGHT, 3, ramp, 3 * WIDTH);
 
+    paint_ramp(COLORMAP_CIVIDIS, ramp);
+    stbi_write_png("cividis.png", WIDTH, HEIGHT, 3, ramp, 3 * WIDTH);
+
     return 0;
 }
 

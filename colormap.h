@@ -1378,7 +1378,8 @@ static void colormap_rgbf(colormap cm, float value, float min, float max, float 
     *b = colormap__lerp((*colormap__ptrs[cm])[point1][2], (*colormap__ptrs[cm])[point2][2], pos);
 }
 
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-function"
 static void colormap_rgb(colormap cm, float value, float min, float max, uint8_t *r, uint8_t *g, uint8_t *b) {
     if ((cm < 0) || (cm >= COLORMAP_COUNT) || (min >= max)) {
         return;
@@ -1389,3 +1390,4 @@ static void colormap_rgb(colormap cm, float value, float min, float max, uint8_t
     *g = rintf(fg * 255.0f);
     *b = rintf(fb * 255.0f);
 }
+#pragma GCC diagnostic pop

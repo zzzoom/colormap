@@ -1354,6 +1354,9 @@ static float colormap__lerp(float v0, float v1, float t) {
 
 
 static void colormap_rgbf(colormap cm, float value, float min, float max, float *r, float *g, float *b) {
+    if ((cm < 0) || (cm >= COLORMAP_COUNT) || (min >= max)) {
+        return;
+    }
     float clamped = colormap__clamp(min, max, value);
     float step = (max - min) / (float) (COLORMAP__MAX);
 
@@ -1370,10 +1373,12 @@ static void colormap_rgbf(colormap cm, float value, float min, float max, float 
 
 
 static void colormap_rgb(colormap cm, float value, float min, float max, uint8_t *r, uint8_t *g, uint8_t *b) {
+    if ((cm < 0) || (cm >= COLORMAP_COUNT) || (min >= max)) {
+        return;
+    }
     float fr, fg, fb;
     colormap_rgbf(cm, value, min, max, &fr, &fg, &fb);
     *r = rintf(fr * 255.0f);
     *g = rintf(fg * 255.0f);
     *b = rintf(fb * 255.0f);
 }
-

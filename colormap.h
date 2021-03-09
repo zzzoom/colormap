@@ -33,6 +33,16 @@
 #include <math.h>
 #include <stdint.h>
 
+/* Interface */
+
+typedef enum { COLORMAP_MAGMA=0, COLORMAP_INFERNO, COLORMAP_PLASMA, COLORMAP_VIRIDIS, COLORMAP_CIVIDIS, COLORMAP_COUNT } colormap;
+
+static void colormap_rgb(colormap cm, float value, float min, float max, uint8_t *r, uint8_t *g, uint8_t *b);
+static void colormap_rgbf(colormap cm, float value, float min, float max, float *r, float *g, float *b);
+
+
+/* Implementation */
+
 #define COLORMAP__SIZE 256
 #define COLORMAP__MAX ((COLORMAP__SIZE) - 1)
 
@@ -1333,8 +1343,6 @@ static const colormap__data colormap__cividis = {
     {1.0000, 0.9169, 0.2731}
 };
 
-typedef enum { COLORMAP_MAGMA=0, COLORMAP_INFERNO, COLORMAP_PLASMA, COLORMAP_VIRIDIS, COLORMAP_CIVIDIS, COLORMAP_COUNT } colormap;
-
 static const colormap__data *colormap__ptrs[] = {
     &colormap__magma,
     &colormap__inferno,
@@ -1351,7 +1359,6 @@ static float colormap__clamp(float min, float max, float v) {
 static float colormap__lerp(float v0, float v1, float t) {
     return t * v1 + (1.0f - t) * v0;
 }
-
 
 static void colormap_rgbf(colormap cm, float value, float min, float max, float *r, float *g, float *b) {
     if ((cm < 0) || (cm >= COLORMAP_COUNT) || (min >= max)) {
